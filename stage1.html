@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stage 1: Baseline Assessment</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <h1>Stage 1: Baseline Evaluation</h1>
+    <p>Please answer the following questions honestly.</p>
+
+    <form id="evalForm">
+      <label for="sleep">
+        How many hours do you typically sleep each night?
+        <br />
+        <input type="number" id="sleep" name="sleep" min="0" max="24" required />
+      </label>
+      <br /><br />
+
+      <label for="trust">
+        Do you consider yourself a trusting person?
+        <br />
+        <select id="trust" name="trust" required>
+          <option value="">-- Select --</option>
+          <option value="Yes">Yes</option>
+          <option value="Sometimes">Sometimes</option>
+          <option value="No">No</option>
+        </select>
+      </label>
+      <br /><br />
+
+      <button type="submit">Next</button>
+    </form>
+  </main>
+
+  <script>
+    document.getElementById("evalForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const sleep = document.getElementById("sleep").value;
+      const trust = document.getElementById("trust").value;
+
+      localStorage.setItem("sleepHours", sleep);
+      localStorage.setItem("trusting", trust);
+
+      window.location.href = "stage2.html";
+    });
+  </script>
+</body>
+</html>

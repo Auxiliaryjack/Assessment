@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stage 4: Reinforcement</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .echo {
+      color: #aaa;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    select.flicker {
+      animation: flicker 3s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      10%, 30%, 50% { opacity: 0.6; }
+      20%, 40%, 60% { opacity: 1; }
+      70% { opacity: 0.3; }
+      80%, 90% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Stage 4: Reinforcement Phase</h1>
+
+    <p class="echo" id="recap"></p>
+
+    <form id="evalForm">
+      <label for="truth">
+        Which of the following statements is most accurate?
+        <br />
+        <select id="truth" name="truth" class="flicker" required>
+          <option value="">-- Select --</option>
+          <option value="None of these apply">None of these apply</option>
+          <option value="I trust easily, even when I shouldn't">I trust easily, even when I shouldn't</option>
+          <option value="I've seen things others have not">I've seen things others have not</option>
+          <option value="I answered dishonestly, but only once">I answered dishonestly, but only once</option>
+        </select>
+      </label>
+      <br /><br />
+
+      <label for="window">
+        Is there someone standing behind you right now?
+        <br />
+        <select id="window" name="window" required>
+          <option value="">-- Select --</option>
+          <option value="No">No</option>
+          <option value="I’m not going to check.">I’m not going to check.</option>
+          <option value="...There wasn’t before.">...There wasn’t before.</option>
+        </select>
+      </label>
+      <br /><br />
+
+      <button type="submit">Receive Evaluation</button>
+    </form>
+  </main>
+
+ <script src="stage4.js"></script>
+</body>
+</html>
+
+</body>
+</html>

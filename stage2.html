@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stage 2: Pattern Recognition</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="content" style="display:none">
+    <h1>Stage 2: Pattern Recognition</h1>
+    <p id="introText"></p>
+
+    <form id="evalForm">
+      <label for="alone">
+        Do you feel more comfortable alone or with others?
+        <br />
+        <select id="alone" name="alone" required>
+          <option value="">-- Select --</option>
+          <option value="Alone">Alone</option>
+          <option value="With Others">With Others</option>
+          <option value="Depends">It depends</option>
+        </select>
+      </label>
+      <br /><br />
+
+      <label for="eyes">
+        Have you ever felt like you were being watched, even when you were sure you were alone?
+        <br />
+        <select id="eyes" name="eyes" required>
+          <option value="">-- Select --</option>
+          <option value="Often">Often</option>
+          <option value="Sometimes">Sometimes</option>
+          <option value="Never">Never</option>
+        </select>
+      </label>
+      <br /><br />
+
+      <button type="submit">Continue</button>
+    </form>
+  </main>
+
+  <script>
+    // Delay content to build tension
+    setTimeout(() => {
+      document.getElementById("content").style.display = "block";
+
+      // Insert personalized message using stored answer
+      const sleep = localStorage.getItem("sleepHours") || "____";
+      const trust = localStorage.getItem("trusting") || "unspecified";
+      const intro = `Noted: you reported sleeping ${sleep} hours and feeling "${trust}". This will help us calibrate further.`;
+      document.getElementById("introText").textContent = intro;
+    }, 2000); // 2 second delay
+
+    // Store new answers
+    document.getElementById("evalForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const alone = document.getElementById("alone").value;
+      const eyes = document.getElementById("eyes").value;
+
+      localStorage.setItem("socialComfort", alone);
+      localStorage.setItem("watchedFeeling", eyes);
+
+      window.location.href = "stage3.html";
+    });
+  </script>
+</body>
+</html>

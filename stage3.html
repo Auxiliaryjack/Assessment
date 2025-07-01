@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stage 3: Consistency Check</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .glitch {
+      position: relative;
+      color: white;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .glitch::before {
+      animation: glitchTop 2s infinite;
+      top: -2px;
+      color: #f0f;
+    }
+
+    .glitch::after {
+      animation: glitchBottom 2s infinite;
+      top: 2px;
+      color: #0ff;
+    }
+
+    @keyframes glitchTop {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      5% { clip: rect(0, 9999px, 5px, 0); }
+      10% { clip: rect(0, 9999px, 0, 0); }
+    }
+
+    @keyframes glitchBottom {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      5% { clip: rect(5px, 9999px, 10px, 0); }
+      10% { clip: rect(0, 9999px, 0, 0); }
+    }
+
+    #nextBtn {
+      transition: opacity 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Stage 3: Consistency Check</h1>
+    <p>
+      Let’s verify some of your previous answers.
+    </p>
+
+    <p class="glitch" data-text="Do you believe your answers have been honest?">
+      Do you believe your answers have been honest?
+    </p>
+
+    <form id="evalForm">
+      <label for="honest">
+        <select id="honest" name="honest" required>
+          <option value="">-- Select --</option>
+          <option value="Yes">Yes</option>
+          <option value="Not Sure">Not Sure</option>
+          <option value="No">No</option>
+        </select>
+      </label>
+      <br /><br />
+
+      <label for="mirror">
+        When was the last time you looked in a mirror and didn't recognize yourself?
+        <br />
+        <select id="mirror" name="mirror" required>
+          <option value="">-- Select --</option>
+          <option value="Recently">Recently</option>
+          <option value="I don't remember">I don't remember</option>
+          <option value="Never">Never</option>
+        </select>
+      </label>
+      <br /><br />
+
+      <button id="nextBtn" type="submit">Continue</button>
+    </form>
+  </main>
+
+  <script>
+    // Optional: make the button vanish briefly after 3 seconds
+    setTimeout(() => {
+      const btn = document.getElementById("nextBtn");
+      btn.style.opacity = "0";
+      setTimeout(() => {
+        btn.style.opacity = "1";
+      }, 1500);
+    }, 3000);
+
+    // Store answers
+    document.getElementById("evalForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const honest = document.getElementById("honest").value;
+      const mirror = document.getElementById("mirror").value;
+
+      localStorage.setItem("honesty", honest);
+      localStorage.setItem("mirrorSelf", mirror);
+
+      window.location.href = "stage4.html";
+    });
+  </script>
+</body>
+</html>

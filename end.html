@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Final Assessment</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background-color: black;
+      color: #e0e0e0;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 2em;
+    }
+
+    #resultBox {
+      border: 1px solid #444;
+      padding: 2em;
+      margin-top: 2em;
+      background: #111;
+      display: none;
+    }
+
+    .glitch {
+      font-family: monospace;
+      color: #f00;
+      animation: glitchText 1.5s steps(2, end) infinite;
+    }
+
+    @keyframes glitchText {
+      0% { opacity: 1; }
+      50% { opacity: 0.3; transform: translateX(2px); }
+      100% { opacity: 1; transform: translateX(-2px); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Compiling Evaluation Results...</h1>
+  <p id="loading">Please wait.</p>
+
+  <div id="resultBox">
+    <p id="line1"></p>
+    <p id="line2"></p>
+    <p id="line3"></p>
+    <p id="finalMessage" class="glitch"></p>
+  </div>
+
+  <script>
+    const sleep = localStorage.getItem("sleepHours");
+    const trust = localStorage.getItem("trusting");
+    const mirror = localStorage.getItem("mirrorSelf");
+    const watched = localStorage.getItem("watchedFeeling");
+    const truth = localStorage.getItem("truthStatement");
+    const presence = localStorage.getItem("presence");
+
+    setTimeout(() => {
+      document.getElementById("loading").textContent = "Analyzing behavioral patterns...";
+    }, 2000);
+
+    setTimeout(() => {
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("resultBox").style.display = "block";
+      document.getElementById("line1").textContent = `Sleep logged: ${sleep} hours.`;
+    }, 4000);
+
+    setTimeout(() => {
+      document.getElementById("line2").textContent = `Trust assessment: "${trust}". Mirror anomaly: "${mirror}".`;
+    }, 6000);
+
+    setTimeout(() => {
+      document.getElementById("line3").textContent = `Truth conflict detected: "${truth}". Presence: "${presence}".`;
+    }, 8000);
+
+    setTimeout(() => {
+      document.getElementById("finalMessage").textContent = "RESULT: ████ NONCOMPLIANT ████";
+    }, 10000);
+
+    setTimeout(() => {
+      document.getElementById("finalMessage").textContent = "RESULT: RECOMMENDED FOR ████████";
+    }, 12000);
+
+    setTimeout(() => {
+      document.getElementById("finalMessage").textContent = "CONNECTION LOST...";
+    }, 14000);
+
+    // Optional loop or soft lock
+    // setTimeout(() => {
+    //   window.location.href = "index.html"; // or loop to stage1.html
+    // }, 18000);
+  </script>
+</body>
+</html>
